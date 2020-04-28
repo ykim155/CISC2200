@@ -38,7 +38,7 @@ public:
     void AddEdge(VertexType v1, VertexType v2, int w);
     
     // Delete an edge between v1 and v2. v1 and v2 have to be in the graph.
-    bool DeleteEdge(VertexType v1, VertexType v2);
+    void DeleteEdge(VertexType v1, VertexType v2);
     
     // Get the weight of edge between v1 and v2.
     int GetWeight(VertexType v1, VertexType v2);
@@ -49,8 +49,8 @@ public:
     // Find vertex v.
     bool VertexExists(VertexType v);
     
-    // Breadth First search for vertex v.
-    void Search(VertexType v);
+    // Breadth First Traversal for vertex v.
+    void Traverse(VertexType v);
     
     // Print the graph.
     void Print();

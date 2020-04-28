@@ -18,6 +18,7 @@ public:
     // Default Constructor
     VertexType(){
         value = -1;
+        mark = DEFAULT;
     }
     // Constructor initialized with a value
     VertexType(int val){
@@ -26,6 +27,10 @@ public:
     // Overload equality operator
     bool operator == (VertexType const& vertex){
         return value == vertex.value;
+    }
+    // Overload inequality operator
+    bool operator != (VertexType const& vertex){
+        return value != vertex.value;
     }
     // Value variable
     int value;

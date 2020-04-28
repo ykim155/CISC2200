@@ -36,6 +36,20 @@ bool DirectedWeightedGraph::isFull() const{
     return count == capacity;
 }
 
+// Get the vector index of vertex v.
+int DirectedWeightedGraph::IndexIs(VertexType v){
+    int i = 0;
+    while(v != vertices[i]){
+        // If i reaches the end of the vertices vector, IndexIs will return -1, indicating non-existance.
+        if(i == vertices.size())
+            return -1;
+        // Otherwise, keep looking.
+        else
+            i++;
+    }
+    return i;
+}
+
 // Add a vertex.
 void DirectedWeightedGraph::AddVertex(VertexType v){
     vertices.push_back(v);
@@ -63,11 +77,52 @@ void DirectedWeightedGraph::DeleteVertex(VertexType v){
                 vertices[i].edges.erase(it);
                 break;
             }
+            it++;
         }
     }
 }
 
-// Delete an edge
-bool DirectedWeightedGraph::DeleteEdge(VertexType v1, VertexType v2){
+// Delete an edge from v1 to v2
+void DirectedWeightedGraph::DeleteEdge(VertexType v1, VertexType v2){
+    int index = IndexIs(v1);
+    // Iterator to go through map of edges for v1.
+    unordered_map<int, int>::iterator it = vertices[index].edges.begin();
+    while(it != vertices[index].edges.end()){
+        if(it->first == v2.value){
+            vertices[index].edges.erase(it);
+            break;
+        }
+    }
+}
+
+// Return weight of an edge going from v1 to v2.
+int DirectedWeightedGraph::GetWeight(VertexType v1, VertexType v2){
+    int index = IndexIs(v1);
+    return vertices[index].edges[v2.value];
+}
+
+// See if an edge exists between v1 and v2.
+bool DirectedWeightedGraph::EdgeExists(VertexType v1, VertexType v2){
+    int index = IndexIs(v1);
+    return (vertices[index].edges.find(v2.value) != vertices[index].edges.end());
+}
+
+// See if a vertex v exists.
+bool DirectedWeightedGraph::VertexExists(VertexType v){
+    return IndexIs(v) != -1;
+}
+
+// Print vertices.
+void DirectedWeightedGraph::Print(){
+    for(int i = 0; i < vertices.size(); i++){
+        unordered_map<int, int>::iterator it = vertices[i].edges.begin();
+        while(it != vertices[i].edges.end()){
+            cout << vertices[i].value << " points to " << it->first << " weighted " << it->second << endl;
+        }
+    }
+}
+
+// Traverse using Breadth First Traversal.
+void DirectedWeightedGraph::Traverse(VertexType v){
     
 }
