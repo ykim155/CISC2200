@@ -52,6 +52,9 @@ public:
     // Breadth First search for vertex v.
     void Search(VertexType v);
     
+    // Print the graph.
+    void Print();
+    
 private:
     // Number of vertices in graph.
     int count;
