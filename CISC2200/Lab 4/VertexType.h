@@ -14,7 +14,7 @@ using namespace std;
 enum MARK {DEFAULT, VISITED};
 
 class VertexType{
-    public:
+public:
     // Default Constructor
     VertexType(){
         value = -1;
@@ -33,6 +33,6 @@ class VertexType{
     unordered_map<int, int> edges;
     // Default is DEFAULT and when visited is VISITED
     MARK mark;
-}
+};
 
 #endif /* VertexType_h */
