@@ -29,7 +29,8 @@ public:
     }
     // Value variable
     int value;
-    // Edges
+    // Edges. unordered_map works like an unsorted dictionary in python.
+    // Contains which vertex this vertex goes to with what weight.
     unordered_map<int, int> edges;
     // Default is DEFAULT and when visited is VISITED
     MARK mark;

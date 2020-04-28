@@ -61,7 +61,10 @@ private:
     // Vertex capacity.
     int capacity;
     
-    // Get the array index of vertex v.
+    // Save all vertices
+    vector<VertexType> vertices;
+    
+    // Get the vector index of vertex v.
     int IndexIs(VertexType v);
 };
 
