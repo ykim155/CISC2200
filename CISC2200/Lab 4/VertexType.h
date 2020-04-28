@@ -8,7 +8,31 @@
 
 #ifndef VertexType_h
 #define VertexType_h
+#include <unordered_map>
 
-using namespace std
+using namespace std;
+enum MARK {DEFAULT, VISITED};
+
+class VertexType{
+    public:
+    // Default Constructor
+    VertexType(){
+        value = -1;
+    }
+    // Constructor initialized with a value
+    VertexType(int val){
+        value = val;
+    }
+    // Overload equality operator
+    bool operator == (VertexType const& vertex){
+        return value == vertex.value;
+    }
+    // Value variable
+    int value;
+    // Edges
+    unordered_map<int, int> edges;
+    // Default is DEFAULT and when visited is VISITED
+    MARK mark;
+}
 
 #endif /* VertexType_h */
