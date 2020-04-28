@@ -7,3 +7,10 @@
 //
 
 #include "DirectedWeightedGraph.h"
+#include <iostream>
+
+// Default Constructor
+DirectedWeightedGraph(){
+    count = 0;
+    capacity = 20;
+}
