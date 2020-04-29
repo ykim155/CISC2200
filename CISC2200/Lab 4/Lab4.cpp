@@ -38,6 +38,7 @@ int main() {
     // Test Traverse().
     cout << "Traversal of Graph: " << endl;
     graph.Traverse(VertexType(1));
+    cout << endl;
     
     // Delete Edge using DeleteEdge().
     graph.DeleteEdge(VertexType(1), VertexType(4));
@@ -55,4 +56,6 @@ int main() {
     // Get the weight with GetWeight().
     cout << "What's the weight of the edge, going from 4 to 5?" << endl;
     cout << graph.GetWeight(VertexType(4), VertexType(5)) << endl;
+    
+    return 0;
 }

@@ -120,6 +120,7 @@ void DirectedWeightedGraph::Print(){
         unordered_map<int, int>::iterator it = vertices[i].edges.begin();
         while(it != vertices[i].edges.end()){
             cout << vertices[i].value << " points to " << it->first << " weighted " << it->second << endl;
+            it++;
         }
     }
 }
@@ -147,6 +148,7 @@ void DirectedWeightedGraph::Traverse(VertexType v){
                 vertices[IndexIs(it->first)].mark = VISITED;
                 vq.push(vertices[IndexIs(it->first)]);
             }
+            it++;
         }
     }
 }
