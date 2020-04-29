@@ -124,5 +124,27 @@ void DirectedWeightedGraph::Print(){
 
 // Traverse using Breadth First Traversal.
 void DirectedWeightedGraph::Traverse(VertexType v){
-    
+    queue<VertexType> vq;
+    // Mark all vertices as unvisited.
+    for(int i = 0; i < vertices.size(); i++){
+        vertices[i].mark = DEFAULT;
+    }
+    // The starting vertex has been visited.
+    vq.push(vertices[IndexIs(v)]);
+    vertices[IndexIs(v)].mark = VISITED;
+    // While vq is not empty.
+    while(!vq.empty()){
+        // Dequeue vertex and print it
+        v = vq.front();
+        cout << vq.front().value << endl;
+        vq.pop();
+        unordered_map<int, int>::iterator it = v.edges.begin();
+        while(it != v.edges.end()){
+            // If unvisited, visit and push into vq.
+            if(vertices[IndexIs(it->first)].mark == DEFAULT){
+                vertices[IndexIs(it->first)].mark = VISITED;
+                vq.push(vertices[IndexIs(it->first)]);
+            }
+        }
+    }
 }
