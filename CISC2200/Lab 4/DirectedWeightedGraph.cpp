@@ -53,6 +53,7 @@ int DirectedWeightedGraph::IndexIs(VertexType v){
 // Add a vertex.
 void DirectedWeightedGraph::AddVertex(VertexType v){
     vertices.push_back(v);
+    count++;
 }
 
 // Add an edge.
@@ -80,6 +81,7 @@ void DirectedWeightedGraph::DeleteVertex(VertexType v){
             it++;
         }
     }
+    count--;
 }
 
 // Delete an edge from v1 to v2

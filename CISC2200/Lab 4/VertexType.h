@@ -23,6 +23,7 @@ public:
     // Constructor initialized with a value
     VertexType(int val){
         value = val;
+        mark = DEFAULT;
     }
     // Overload equality operator
     bool operator == (VertexType const& vertex){
