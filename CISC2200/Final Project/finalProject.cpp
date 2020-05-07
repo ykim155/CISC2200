@@ -90,6 +90,7 @@ string infixConvert(string exp){
             else{
                 postfix += s.top();
                 s.pop();
+                s.push(exp[i]);
                 postfix += ' ';
             }
         }
@@ -107,16 +108,11 @@ string infixConvert(string exp){
                 }
             }
         }
-        // If there is input.
-        if(!exp.empty())
-            continue;
-        else{
-            while(!s.empty()){
-                postfix += s.top();
-                s.pop();
-                postfix += ' ';
-            }
-        }
+    }
+    while(!s.empty()){
+        postfix += s.top();
+        s.pop();
+        postfix += ' ';
     }
     return postfix;
 }
