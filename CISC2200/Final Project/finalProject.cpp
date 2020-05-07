@@ -81,12 +81,13 @@ string infixConvert(string exp){
             s.push(exp[i]);
         // If we encounter an operator.
         else if(isOperator(exp[i])){
-            if(s.empty())
+            // If the stack is empty or if the top is an open parenthesis, push the operator.
+            if(s.empty() || s.top() == '(')
                 s.push(exp[i]);
-            else if(s.top() == '(')
-                s.push(exp[i]);
+            // If the operator takes precedence comapared to the operator on stack, push the operator.
             else if(precedence(exp[i]) > precedence(s.top()))
                 s.push(exp[i]);
+            // Else, add the stack's top to output and push the operator.
             else{
                 postfix += s.top();
                 s.pop();
@@ -97,10 +98,12 @@ string infixConvert(string exp){
         // If we encounter a closing parenthesis, pop and output until we get to the open parenthesis.
         else if(exp[i] == ')'){
             while(!s.empty()){
+                // If the top is an opening parenthesis, pop and break the loop.
                 if(s.top() == '('){
                     s.pop();
                     break;
                 }
+                // Else, push the top of the stack until we encounter an opening parenthesis.
                 else{
                     postfix += s.top();
                     s.pop();
@@ -109,6 +112,7 @@ string infixConvert(string exp){
             }
         }
     }
+    // Add leftover operators to the output.
     while(!s.empty()){
         postfix += s.top();
         s.pop();
