@@ -26,10 +26,10 @@ bool isOperator(char ch);
 string infixConvert(string exp);
 
 // Function evaluating the postfix expression.
-int postfixEval(string exp);
+double postfixEval(string exp);
 
 // Solve function.
-int solve(string exp);
+double solve(string exp);
 
 int main(){
     string exp;
@@ -40,7 +40,7 @@ int main(){
             if(exp == "quit"){
                 break;
             }
-            int ans = solve(exp);
+            double ans = solve(exp);
             cout << exp << " = " << ans << endl;
         }
         catch (char const* msg){
@@ -153,12 +153,12 @@ string infixConvert(string exp){
     return postfix;
 }
 
-int postfixEval(string exp){
-    stack<int> s;
+double postfixEval(string exp){
+    stack<double> s;
     int const len = exp.size();
     for(int i = 0; i < len; i++){
         // Variable to be used for calculations.
-        int num;
+        double num1;
         // Ignore spaces.
         if(exp[i] == ' ')
             continue;
@@ -171,45 +171,46 @@ int postfixEval(string exp){
                     temp += exp[i+1];
                     i++;
                 }
-                num = stoi(temp);
-                s.push(num);
+                num1 = stod(temp);
+                s.push(num1);
             }
             // Single digit numbers.
             else{
-                num = exp[i] - '0';
-                s.push(num);
+                num1 = exp[i] - '0';
+                s.push(num1);
             }
         }
         // If we encounter an operator.
         else if(isOperator(exp[i])){
-            int op2 = s.top();
+            double ans;
+            double op2 = s.top();
             s.pop();
             if(s.empty())
                 throw "Error: Please check for dangling operators.";
-            int op1 = s.top();
+            double op1 = s.top();
             s.pop();
             switch(exp[i]){
                 case '+':
-                    num = op1 + op2;
+                    ans = op1 + op2 * 1.0;
                     break;
                 case '-':
-                    num = op1 - op2;
+                    ans = op1 - op2 * 1.0;
                     break;
                 case '*':
-                    num = op1 * op2;
+                    ans = op1 * op2 * 1.0;
                     break;
                 case '/':
                     if(op2 == 0)
                         throw "Error, division by 0.";
-                    num = op1 / op2;
+                    ans = op1 / op2 * 1.0;
                     break;
             }
-            s.push(num);
+            s.push(ans);
         }
     }
     return s.top();
 }
 
-int solve(string exp){
+double solve(string exp){
     return postfixEval(infixConvert(exp));
 }
