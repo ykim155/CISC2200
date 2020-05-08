@@ -22,7 +22,7 @@ bool isOperand(char ch);
 // Function to check if char is an operator.
 bool isOperator(char ch);
 
-// Function to turn infix notation into prefix.
+// Function to turn infix notation into postfix.
 string infixConvert(string exp);
 
 // Function evaluating the postfix expression.
